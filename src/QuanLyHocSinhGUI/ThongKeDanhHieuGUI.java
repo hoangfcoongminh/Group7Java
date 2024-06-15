@@ -33,7 +33,7 @@ public class ThongKeDanhHieuGUI extends javax.swing.JFrame {
     
     public void initTable(){
         tableModel = new DefaultTableModel();
-        tableModel.setColumnIdentifiers(new String[] {"", "Yếu", "Trung Bình", "Khá", "Giỏi", "Xuất Sắc"});
+        tableModel.setColumnIdentifiers(new String[] {"", "Đoàn Viên", "Đảng Viên"});
         tblThongKe.setModel(tableModel);
     }
     
@@ -48,41 +48,28 @@ public class ThongKeDanhHieuGUI extends javax.swing.JFrame {
     
     public void LoadDataForSchool(){
         try{
-            tableModel.setColumnIdentifiers(new String[] {"Toàn trường", "Yếu", "Trung Bình", "Khá", "Giỏi", "Xuất Sắc"});
+            tableModel.setColumnIdentifiers(new String[] {"Toàn trường", "Đoàn Viên", "Đảng Viên"});
             DBHocSinhEngine db = new DBHocSinhEngine();
             List<HocSinh> dsHS = db.ReadDataFromFile();
-            int[] tongDanhHieu = {0, 0, 0, 0, 0};
+            int[] count = {0, 0};
             for(HocSinh hs : dsHS){
-                switch(hs.getDanhHieu()){
-                    case "Yếu":
-                        tongDanhHieu[0]++;
-                        break;
-                    case "Trung Bình":
-                        tongDanhHieu[1]++;
-                        break;
-                    case "Khá":
-                        tongDanhHieu[2]++;
-                        break;
-                    case "Giỏi":
-                        tongDanhHieu[3]++;
-                        break;
-                    case "Xuất Sắc":
-                        tongDanhHieu[4]++;
-                        break;
+                if(hs.getCongTacDoan().equalsIgnoreCase("Đoàn Viên")){
+                    count[0]++;
                 }
+                else count[1]++;
             }
             tableModel.setRowCount(0);
-            Object[] rowData = new Object[6];
+            Object[] rowData = new Object[3];
             rowData[0] = null;
-            Object[] rowRate = new Object[6];
+            Object[] rowRate = new Object[3];
             rowRate[0] = "Tỷ lệ";
             int sum = 0;
-            for(int i = 0; i < tongDanhHieu.length; i++){
-                sum += tongDanhHieu[i];
+            for(int i = 0; i < count.length; i++){
+                sum += count[i];
             }
-            for(int i = 0; i < 5; i++){
-                rowData[i + 1] = tongDanhHieu[i];
-                float number = ((float)tongDanhHieu[i] / sum) * 100;
+            for(int i = 0; i < 2; i++){
+                rowData[i + 1] = count[i];
+                float number = ((float)count[i] / sum) * 100;
                 String formattedNumber = String.format("%.2f", number);
                 rowRate[i + 1] = formattedNumber + "%";
             }
@@ -97,7 +84,7 @@ public class ThongKeDanhHieuGUI extends javax.swing.JFrame {
     public void LoadDataForClass(){
         try{
             tableModel.setRowCount(0);
-            tableModel.setColumnIdentifiers(new String[] {"Lớp", "Yếu", "Trung Bình", "Khá", "Giỏi", "Xuất Sắc"});
+            tableModel.setColumnIdentifiers(new String[] {"Lớp", "Đoàn Viên", "Đảng Viên"});
             DBHocSinhEngine db = new DBHocSinhEngine();
             List<HocSinh> dsHS = db.ReadDataFromFile();
             Collections.sort(dsHS, new Comparator<HocSinh>(){
@@ -106,7 +93,7 @@ public class ThongKeDanhHieuGUI extends javax.swing.JFrame {
                     return hs1.getLop().compareTo(hs2.getLop());
                 }
             });
-            int[] tongDanhHieu = {0, 0, 0, 0, 0};
+            int[] count = {0, 0};
             List<String> dsLop = new ArrayList<>();
             String tmp;
             for(int i = 0; i < dsHS.size(); i++){
@@ -118,36 +105,23 @@ public class ThongKeDanhHieuGUI extends javax.swing.JFrame {
             for(int i = 0; i < dsLop.size(); i++){
                 for(HocSinh hs : dsHS){
                     if(hs.getLop().equals(dsLop.get(i))){
-                        switch(hs.getDanhHieu()){
-                            case "Yếu":
-                                tongDanhHieu[0]++;
-                                break;
-                            case "Trung Bình":
-                                tongDanhHieu[1]++;
-                                break;
-                            case "Khá":
-                                tongDanhHieu[2]++;
-                                break;
-                            case "Giỏi":
-                                tongDanhHieu[3]++;
-                                break;
-                            case "Xuất Sắc":
-                                tongDanhHieu[4]++;
-                                break;
+                        if(hs.getCongTacDoan().equalsIgnoreCase("Đoàn Viên")){
+                            count[0]++;
                         }
+                        else count[1]++;
                     }
                 }
-                Object[] rowData = new Object[6];
+                Object[] rowData = new Object[3];
                 rowData[0] = dsLop.get(i);
-                Object[] rowRate = new Object[6];
+                Object[] rowRate = new Object[3];
                 rowRate[0] = "Tỷ lệ";
                 int sum = 0;
-                for(int j = 0; j < tongDanhHieu.length; j++){
-                    sum += tongDanhHieu[j];
+                for(int j = 0; j < count.length; j++){
+                    sum += count[j];
                 }
-                for(int k = 0; k < 5; k++){
-                    rowData[k + 1] = tongDanhHieu[k];
-                    float number = ((float)tongDanhHieu[k] / sum) * 100;
+                for(int k = 0; k < 2; k++){
+                    rowData[k + 1] = count[k];
+                    float number = ((float)count[k] / sum) * 100;
                     String formattedNumber = String.format("%.2f", number);
                     rowRate[k + 1] = formattedNumber + "%";
                 }
@@ -155,8 +129,8 @@ public class ThongKeDanhHieuGUI extends javax.swing.JFrame {
                 tableModel.addRow(rowRate);
                 tableModel.addRow(new Object[]{null, null, null, null, null, null});
                 tableModel.fireTableDataChanged();
-                for(int u = 0; u < tongDanhHieu.length; u++){
-                    tongDanhHieu[u] = 0;
+                for(int u = 0; u < count.length; u++){
+                    count[u] = 0;
                 }
             }
             
@@ -182,7 +156,7 @@ public class ThongKeDanhHieuGUI extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
         btnReThongKe = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnHome = new javax.swing.JButton();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -203,27 +177,22 @@ public class ThongKeDanhHieuGUI extends javax.swing.JFrame {
 
         tblThongKe.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null}
+                {null, null, null}
             },
             new String [] {
-                "", "Yếu", "Trung Bình", "Khá", "Giỏi", "Xuất Sắc"
+                "", "Đoàn Viên", "Đảng Viên"
             }
         ));
         JTableHeader header = tblThongKe.getTableHeader();
         DefaultTableCellRenderer renderer = (DefaultTableCellRenderer) header.getDefaultRenderer();
         renderer.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
-        tblThongKe.setCellSelectionEnabled(true);
+        tblThongKe.setColumnSelectionAllowed(false);
         jScrollPane1.setViewportView(tblThongKe);
         tblThongKe.getAccessibleContext().setAccessibleDescription("");
 
         comboBox.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Toàn trường", "Lớp" }));
         comboBox.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        comboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboBoxActionPerformed(evt);
-            }
-        });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel2.setText("Thống kê cho:");
@@ -248,11 +217,11 @@ public class ThongKeDanhHieuGUI extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon-home.png"))); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnHome.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon-home.png"))); // NOI18N
+        btnHome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnHomeActionPerformed(evt);
             }
         });
 
@@ -260,50 +229,50 @@ public class ThongKeDanhHieuGUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(79, 79, 79))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(btnHome)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnBack)
+                                .addGap(93, 93, 93)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(60, 60, 60)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnBack)
-                        .addGap(114, 114, 114)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(296, 296, 296)
+                        .addGap(251, 251, 251)
                         .addComponent(btnReThongKe)))
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnBack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(28, 28, 28)
+                            .addComponent(btnHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(59, 59, 59))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addGap(32, 32, 32)
+                .addGap(34, 34, 34)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnReThongKe)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
@@ -322,14 +291,10 @@ public class ThongKeDanhHieuGUI extends javax.swing.JFrame {
             LoadDataForClass();
     }//GEN-LAST:event_btnReThongKeActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
         new HomeGUI().setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboBoxActionPerformed
+    }//GEN-LAST:event_btnHomeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -369,9 +334,9 @@ public class ThongKeDanhHieuGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnHome;
     private javax.swing.JButton btnReThongKe;
     private javax.swing.JComboBox<String> comboBox;
-    private javax.swing.JButton jButton1;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

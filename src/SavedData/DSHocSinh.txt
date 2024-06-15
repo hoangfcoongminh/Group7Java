@@ -1,4 +1,0 @@
-1,1,1,Trung Bình,Nam
-3,3,3,Giỏi,Nữ
-4,4,4,Khá,Nữ
-5,5,5,Khá,Nam

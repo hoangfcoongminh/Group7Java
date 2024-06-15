@@ -52,7 +52,7 @@ public class QuanLyHocSinhGUI extends javax.swing.JFrame {
             
             tableModel.setRowCount(0);
             for(HocSinh hs : dsHS){
-                tableModel.addRow(new Object[]{hs.getMaHS(), hs.getHoTen(), hs.getGioiTinh(), hs.getLop(), hs.getDanhHieu()});
+                tableModel.addRow(new Object[]{hs.getMaHS(), hs.getHoTen(), hs.getGioiTinh(), hs.getLop(), hs.getCongTacDoan()});
             }
             tableModel.fireTableDataChanged();
         } catch(Exception ex) {
@@ -90,7 +90,6 @@ public class QuanLyHocSinhGUI extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tableOutput = new javax.swing.JTable();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel6 = new javax.swing.JLabel();
         btnThongKe = new javax.swing.JButton();
         comboBox = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
@@ -217,7 +216,7 @@ public class QuanLyHocSinhGUI extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Mã HS", "Họ Tên", "Giới tính", "Lớp", "Danh hiệu"
+                "Mã HS", "Họ Tên", "Giới tính", "Lớp", "Công tác đoàn"
             }
         ));
         tableOutput.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -233,9 +232,6 @@ public class QuanLyHocSinhGUI extends javax.swing.JFrame {
             tableOutput.getColumnModel().getColumn(4).setPreferredWidth(40);
         }
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel6.setText("Danh hiệu");
-
         btnThongKe.setBackground(new java.awt.Color(0, 102, 255));
         btnThongKe.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnThongKe.setForeground(new java.awt.Color(255, 255, 255));
@@ -248,7 +244,7 @@ public class QuanLyHocSinhGUI extends javax.swing.JFrame {
         });
 
         comboBox.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Danh hiệu", "Yếu", "Trung Bình", "Khá", "Giỏi", "Xuất Sắc" }));
+        comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Đoàn viên", "Đảng viên" }));
         comboBox.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -282,45 +278,45 @@ public class QuanLyHocSinhGUI extends javax.swing.JFrame {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(71, 71, 71)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(51, 51, 51)
-                                .addComponent(jLabel5)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnNam)
-                                .addGap(33, 33, 33)
-                                .addComponent(btnNu))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(129, 129, 129)
+                                        .addComponent(comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel7)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnTimKiem))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(txtHoTen, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
+                                            .addComponent(txtMaHS, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtLop)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(15, 15, 15)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(btnClean)
+                                            .addComponent(jLabel5))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnNam)
+                                        .addGap(33, 33, 33)
+                                        .addComponent(btnNu)))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(40, 40, 40)
-                                .addComponent(jLabel6)
+                                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(31, 31, 31)
+                                .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnTimKiem))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(btnClean)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(btnSave)
-                                    .addGap(31, 31, 31)
-                                    .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(34, 34, 34)
-                                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel3)
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(txtHoTen, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
-                                        .addComponent(txtMaHS, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtLop)))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)))))
                 .addGap(57, 57, 57))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -361,9 +357,7 @@ public class QuanLyHocSinhGUI extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(txtLop, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -402,15 +396,14 @@ public class QuanLyHocSinhGUI extends javax.swing.JFrame {
         DataValidator.ValidateIsEmpty(txtMaHS,  sb, "Không được bỏ trống Mã Học Sinh\n");
         DataValidator.ValidateIsEmpty(txtHoTen, sb, "Không được bỏ trống Họ tên\n");
         DataValidator.ValidateIsEmpty(txtLop,  sb, "Không được bỏ trống Tên lớp\n");
-        DataValidator.ValidateIsComboBoxSelected(comboBox,  sb, "Vui lòng chọn Danh hiệu\n");
         DataValidator.ValidateIsSelected(buttonGroup1, sb, "Vui lòng chọn giới tính\n");
         if(sb.length() > 0){
             MessageDialogs.ShowErrorMessage(this, sb.toString(), "Lỗi");
         }
         else {
             try{            
-                String danhHieu;
-                danhHieu = (String)comboBox.getSelectedItem();
+                String congTacDoan;
+                congTacDoan = (String)comboBox.getSelectedItem();
                 
                 String gioiTinh;
                 if(btnNam.isSelected())
@@ -421,7 +414,7 @@ public class QuanLyHocSinhGUI extends javax.swing.JFrame {
                 List<HocSinh> dsTest = db.ReadDataFromFile();
                 
                 HashSet<HocSinh> dsHS = new HashSet<>();
-                HocSinh hs = new HocSinh(txtMaHS.getText(), txtHoTen.getText(), txtLop.getText(), danhHieu, gioiTinh);
+                HocSinh hs = new HocSinh(txtMaHS.getText(), txtHoTen.getText(), txtLop.getText(), congTacDoan, gioiTinh);
                 
                 if(dsTest.contains(hs) != true){
                     dsHS.add(hs);
@@ -445,7 +438,6 @@ public class QuanLyHocSinhGUI extends javax.swing.JFrame {
         DataValidator.ValidateIsEmpty(txtMaHS,  sb, "Không được bỏ trống Mã Học sinh\n");
         DataValidator.ValidateIsEmpty(txtHoTen, sb, "Không được bỏ trống Họ tên\n");
         DataValidator.ValidateIsEmpty(txtLop,  sb, "Không được bỏ trống Tên lớp\n");
-        DataValidator.ValidateIsComboBoxSelected(comboBox,  sb, "Vui lòng chọn Danh hiệu\n");
         DataValidator.ValidateIsSelected(buttonGroup1, sb, "Vui lòng chọn giới tính\n");
         if(sb.length() > 0){
             MessageDialogs.ShowErrorMessage(this, sb.toString(), "Lỗi");
@@ -457,13 +449,12 @@ public class QuanLyHocSinhGUI extends javax.swing.JFrame {
         try {
             DBHocSinhEngine db = new DBHocSinhEngine();
             List<HocSinh> dsHS = db.ReadDataFromFile();
-            String danhHieu;
-            danhHieu = (String)comboBox.getSelectedItem();
+            String congTacDoan = (String)comboBox.getSelectedItem();
             String gioiTinh;
             if(btnNam.isSelected())
                 gioiTinh = "Nam";
             else gioiTinh = "Nữ";
-            HocSinh newHS = new HocSinh(txtMaHS.getText(), txtHoTen.getText(), txtLop.getText(), danhHieu, gioiTinh);
+            HocSinh newHS = new HocSinh(txtMaHS.getText(), txtHoTen.getText(), txtLop.getText(), congTacDoan, gioiTinh);
             int i = -1;
             for(HocSinh hs : dsHS){
                 if(hs.getMaHS().equals(txtMaHS.getText())){
@@ -530,12 +521,12 @@ public class QuanLyHocSinhGUI extends javax.swing.JFrame {
                 String hoTen = (String)tableOutput.getValueAt(selectedRow, 1);
                 String gioiTinh = (String)tableOutput.getValueAt(selectedRow, 2);
                 String lop = (String)tableOutput.getValueAt(selectedRow, 3);
-                String danhHieu = (String)tableOutput.getValueAt(selectedRow, 4);
+                String congTacDoan = (String)tableOutput.getValueAt(selectedRow, 4);
                                 
                 txtMaHS.setText(maSV);
                 txtHoTen.setText(hoTen);
                 txtLop.setText(lop);
-                comboBox.setSelectedItem(danhHieu);
+                comboBox.setSelectedItem(congTacDoan);
                 if(gioiTinh.equalsIgnoreCase("Nam") == true){
                     btnNam.setSelected(true);
                 }
@@ -589,7 +580,7 @@ public class QuanLyHocSinhGUI extends javax.swing.JFrame {
                 txtMaHS.setText(tmp.getMaHS());
                 txtHoTen.setText(tmp.getHoTen());
                 txtLop.setText(tmp.getLop());
-                comboBox.setSelectedItem(tmp.getDanhHieu());
+                comboBox.setSelectedItem(tmp.getCongTacDoan());
                 if(tmp.getGioiTinh().equalsIgnoreCase("Nam") == true){
                     btnNam.setSelected(true);
                 }
@@ -657,7 +648,6 @@ public class QuanLyHocSinhGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

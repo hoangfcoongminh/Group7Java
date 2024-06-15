@@ -8,7 +8,7 @@ public class HocSinh implements Serializable {
     protected String maHS;
     protected String hoTen;
     protected String lop;
-    protected String danhHieu;
+    protected String congTacDoan;
     protected String gioiTinh;
 
     public HocSinh() {
@@ -18,11 +18,11 @@ public class HocSinh implements Serializable {
         this.maHS = maHS;
     }
     
-    public HocSinh(String maHS, String hoTen, String lop, String danhHieu, String gioiTinh) {
+    public HocSinh(String maHS, String hoTen, String lop, String congTacDoan, String gioiTinh) {
         this.maHS = maHS;
         this.hoTen = hoTen;
         this.lop = lop;
-        this.danhHieu = danhHieu;
+        this.congTacDoan = congTacDoan;
         this.gioiTinh = gioiTinh;
     }
 
@@ -50,12 +50,12 @@ public class HocSinh implements Serializable {
         this.lop = lop;
     }
 
-    public String getDanhHieu() {
-        return danhHieu;
+    public String getCongTacDoan() {
+        return congTacDoan;
     }
 
-    public void setDanhHieu(String danhHieu) {
-        this.danhHieu = danhHieu;
+    public void setCongTacDoan(String congTacDoan) {
+        this.congTacDoan = congTacDoan;
     }
 
     public String getGioiTinh() {
@@ -68,7 +68,7 @@ public class HocSinh implements Serializable {
     
     @Override
     public String toString() {
-        return maHS + "," + hoTen + "," + lop + "," + danhHieu + "," + gioiTinh;
+        return maHS + "," + hoTen + "," + lop + "," + congTacDoan + "," + gioiTinh;
     }
     
     @Override
