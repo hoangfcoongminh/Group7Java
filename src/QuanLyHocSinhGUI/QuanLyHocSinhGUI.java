@@ -5,7 +5,7 @@
 package QuanLyHocSinhGUI;
 
 import Engine.DBHocSinhEngine;
-import GUI.HomeGUI;
+import HomeGUI.HomeGUI;
 import Model.HocSinh;
 import Utils.*;
 import java.awt.Color;
@@ -442,7 +442,6 @@ public class QuanLyHocSinhGUI extends javax.swing.JFrame {
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         StringBuilder sb = new StringBuilder();
-        
         DataValidator.ValidateIsEmpty(txtMaHS,  sb, "Không được bỏ trống Mã Học sinh\n");
         DataValidator.ValidateIsEmpty(txtHoTen, sb, "Không được bỏ trống Họ tên\n");
         DataValidator.ValidateIsEmpty(txtLop,  sb, "Không được bỏ trống Tên lớp\n");
@@ -457,19 +456,14 @@ public class QuanLyHocSinhGUI extends javax.swing.JFrame {
         }
         try {
             DBHocSinhEngine db = new DBHocSinhEngine();
-            
             List<HocSinh> dsHS = db.ReadDataFromFile();
-            
             String danhHieu;
             danhHieu = (String)comboBox.getSelectedItem();
             String gioiTinh;
-            
             if(btnNam.isSelected())
                 gioiTinh = "Nam";
             else gioiTinh = "Nữ";
-            
             HocSinh newHS = new HocSinh(txtMaHS.getText(), txtHoTen.getText(), txtLop.getText(), danhHieu, gioiTinh);
-            
             int i = -1;
             for(HocSinh hs : dsHS){
                 if(hs.getMaHS().equals(txtMaHS.getText())){
@@ -481,10 +475,8 @@ public class QuanLyHocSinhGUI extends javax.swing.JFrame {
                 MessageDialogs.ShowMessage(this, "Sửa thành công Học sinh !", "Thông báo");
             }
             else MessageDialogs.ShowErrorMessage(this, "Không tồn tại Học sinh", "Thông báo");
-             
             HashSet<HocSinh> toHashSet = new HashSet<>(dsHS);
             db.SaveDataToFile(toHashSet, false);
-            
             LoadDataToTable();
 
         } catch (Exception e) {

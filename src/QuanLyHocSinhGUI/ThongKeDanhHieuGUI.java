@@ -5,6 +5,7 @@
 package QuanLyHocSinhGUI;
 
 import Engine.DBHocSinhEngine;
+import HomeGUI.HomeGUI;
 import Model.HocSinh;
 import Utils.MessageDialogs;
 import java.util.ArrayList;
@@ -49,11 +50,8 @@ public class ThongKeDanhHieuGUI extends javax.swing.JFrame {
         try{
             tableModel.setColumnIdentifiers(new String[] {"Toàn trường", "Yếu", "Trung Bình", "Khá", "Giỏi", "Xuất Sắc"});
             DBHocSinhEngine db = new DBHocSinhEngine();
-            
             List<HocSinh> dsHS = db.ReadDataFromFile();
-            
             int[] tongDanhHieu = {0, 0, 0, 0, 0};
-            
             for(HocSinh hs : dsHS){
                 switch(hs.getDanhHieu()){
                     case "Yếu":
@@ -73,18 +71,15 @@ public class ThongKeDanhHieuGUI extends javax.swing.JFrame {
                         break;
                 }
             }
-            
             tableModel.setRowCount(0);
             Object[] rowData = new Object[6];
             rowData[0] = null;
             Object[] rowRate = new Object[6];
             rowRate[0] = "Tỷ lệ";
-            
             int sum = 0;
             for(int i = 0; i < tongDanhHieu.length; i++){
                 sum += tongDanhHieu[i];
             }
-            
             for(int i = 0; i < 5; i++){
                 rowData[i + 1] = tongDanhHieu[i];
                 float number = ((float)tongDanhHieu[i] / sum) * 100;
@@ -104,20 +99,15 @@ public class ThongKeDanhHieuGUI extends javax.swing.JFrame {
             tableModel.setRowCount(0);
             tableModel.setColumnIdentifiers(new String[] {"Lớp", "Yếu", "Trung Bình", "Khá", "Giỏi", "Xuất Sắc"});
             DBHocSinhEngine db = new DBHocSinhEngine();
-            
             List<HocSinh> dsHS = db.ReadDataFromFile();
-            
             Collections.sort(dsHS, new Comparator<HocSinh>(){
                 @Override
                 public int compare(HocSinh hs1, HocSinh hs2){
                     return hs1.getLop().compareTo(hs2.getLop());
                 }
             });
-            
             int[] tongDanhHieu = {0, 0, 0, 0, 0};
-            
             List<String> dsLop = new ArrayList<>();
-            
             String tmp;
             for(int i = 0; i < dsHS.size(); i++){
                 tmp = dsHS.get(i).getLop();
@@ -151,12 +141,10 @@ public class ThongKeDanhHieuGUI extends javax.swing.JFrame {
                 rowData[0] = dsLop.get(i);
                 Object[] rowRate = new Object[6];
                 rowRate[0] = "Tỷ lệ";
-
                 int sum = 0;
                 for(int j = 0; j < tongDanhHieu.length; j++){
                     sum += tongDanhHieu[j];
                 }
-
                 for(int k = 0; k < 5; k++){
                     rowData[k + 1] = tongDanhHieu[k];
                     float number = ((float)tongDanhHieu[k] / sum) * 100;
@@ -194,6 +182,7 @@ public class ThongKeDanhHieuGUI extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
         btnReThongKe = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -230,6 +219,11 @@ public class ThongKeDanhHieuGUI extends javax.swing.JFrame {
         comboBox.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Toàn trường", "Lớp" }));
         comboBox.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        comboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel2.setText("Thống kê cho:");
@@ -254,6 +248,14 @@ public class ThongKeDanhHieuGUI extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon-home.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -268,8 +270,10 @@ public class ThongKeDanhHieuGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
                         .addComponent(btnBack)
-                        .addGap(186, 186, 186)
+                        .addGap(114, 114, 114)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(60, 60, 60)
@@ -288,7 +292,9 @@ public class ThongKeDanhHieuGUI extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btnBack)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnBack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -297,7 +303,7 @@ public class ThongKeDanhHieuGUI extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnReThongKe)
-                .addContainerGap(103, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -315,6 +321,15 @@ public class ThongKeDanhHieuGUI extends javax.swing.JFrame {
         if(type == "Lớp")
             LoadDataForClass();
     }//GEN-LAST:event_btnReThongKeActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        new HomeGUI().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -356,6 +371,7 @@ public class ThongKeDanhHieuGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnReThongKe;
     private javax.swing.JComboBox<String> comboBox;
+    private javax.swing.JButton jButton1;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
