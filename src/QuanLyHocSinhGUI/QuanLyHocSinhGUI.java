@@ -555,7 +555,7 @@ public class QuanLyHocSinhGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_txtLopFocusGained
 
     private void btnThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeActionPerformed
-        new ThongKeDanhHieuGUI().setVisible(true);
+        new ThongKeCongTacDoanGUI().setVisible(true);
     }//GEN-LAST:event_btnThongKeActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed

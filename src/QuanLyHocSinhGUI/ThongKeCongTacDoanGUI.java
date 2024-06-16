@@ -18,13 +18,13 @@ import javax.swing.table.*;
  *
  * @author hoang
  */
-public class ThongKeDanhHieuGUI extends javax.swing.JFrame {
+public class ThongKeCongTacDoanGUI extends javax.swing.JFrame {
     
     public DefaultTableModel tableModel;
     /**
      * Creates new form ThongKeGUI
      */
-    public ThongKeDanhHieuGUI() {
+    public ThongKeCongTacDoanGUI() {
         initComponents();
         initTable();
         setLocationRelativeTo(null);
@@ -186,7 +186,6 @@ public class ThongKeDanhHieuGUI extends javax.swing.JFrame {
         JTableHeader header = tblThongKe.getTableHeader();
         DefaultTableCellRenderer renderer = (DefaultTableCellRenderer) header.getDefaultRenderer();
         renderer.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
-        tblThongKe.setColumnSelectionAllowed(false);
         jScrollPane1.setViewportView(tblThongKe);
         tblThongKe.getAccessibleContext().setAccessibleDescription("");
 
@@ -313,21 +312,23 @@ public class ThongKeDanhHieuGUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ThongKeDanhHieuGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ThongKeCongTacDoanGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ThongKeDanhHieuGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ThongKeCongTacDoanGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ThongKeDanhHieuGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ThongKeCongTacDoanGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ThongKeDanhHieuGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ThongKeCongTacDoanGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ThongKeDanhHieuGUI().setVisible(true);
+                new ThongKeCongTacDoanGUI().setVisible(true);
             }
         });
     }
