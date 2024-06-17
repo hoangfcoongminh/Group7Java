@@ -11,7 +11,7 @@ import java.io.*;
 
 /**
  *
- * @author hoang
+ * @author HoangCongMinh
  */
 public class DBHocSinhEngine {
     public void SaveDataToFile(HashSet<HocSinh> dsSV, boolean check){

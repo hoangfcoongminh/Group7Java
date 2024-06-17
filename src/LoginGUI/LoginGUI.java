@@ -17,7 +17,7 @@ import java.awt.event.KeyEvent;
 
 /**
  *
- * @author hoang
+ * @author HoangCongMinh
  */
 public class LoginGUI extends javax.swing.JFrame {
 

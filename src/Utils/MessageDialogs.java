@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author hoang
+ * @author HoangCongMinh
  */
 public class MessageDialogs {
     public static void ShowErrorMessage(Component c, String content, String typeMess){

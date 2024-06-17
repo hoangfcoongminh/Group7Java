@@ -16,7 +16,7 @@ import javax.swing.table.*;
 
 /**
  *
- * @author hoang
+ * @author HoangCongMinh
  */
 public class ThongKeCongTacDoanGUI extends javax.swing.JFrame {
     
@@ -278,6 +278,7 @@ public class ThongKeCongTacDoanGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        new QuanLyHocSinhGUI().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 

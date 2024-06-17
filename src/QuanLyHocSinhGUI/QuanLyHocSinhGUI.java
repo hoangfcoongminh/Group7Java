@@ -33,7 +33,7 @@ public class QuanLyHocSinhGUI extends javax.swing.JFrame {
 
     public void initTable() {
         tableModel = new DefaultTableModel();
-        tableModel.setColumnIdentifiers(new String[]{"Mã HS", "Họ tên", "Giới tính", "Lớp", "Danh hiệu"});
+        tableModel.setColumnIdentifiers(new String[]{"Mã HS", "Họ tên", "Giới tính", "Lớp", "Công tác đoàn"});
         tableOutput.setModel(tableModel);
     }
     
@@ -174,9 +174,7 @@ public class QuanLyHocSinhGUI extends javax.swing.JFrame {
             }
         });
 
-        btnSave.setBackground(new java.awt.Color(0, 204, 0));
         btnSave.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnSave.setForeground(new java.awt.Color(255, 255, 255));
         btnSave.setText("Lưu");
         btnSave.setToolTipText("");
         btnSave.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -186,9 +184,7 @@ public class QuanLyHocSinhGUI extends javax.swing.JFrame {
             }
         });
 
-        btnEdit.setBackground(new java.awt.Color(255, 153, 0));
         btnEdit.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnEdit.setForeground(new java.awt.Color(255, 255, 255));
         btnEdit.setText("Sửa");
         btnEdit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
@@ -197,9 +193,7 @@ public class QuanLyHocSinhGUI extends javax.swing.JFrame {
             }
         });
 
-        btnDelete.setBackground(new java.awt.Color(255, 51, 51));
         btnDelete.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnDelete.setForeground(new java.awt.Color(255, 255, 255));
         btnDelete.setText("Xóa");
         btnDelete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -556,6 +550,7 @@ public class QuanLyHocSinhGUI extends javax.swing.JFrame {
 
     private void btnThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeActionPerformed
         new ThongKeCongTacDoanGUI().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnThongKeActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed

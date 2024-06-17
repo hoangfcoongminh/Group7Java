@@ -10,7 +10,7 @@ import javax.swing.*;
 
 /**
  *
- * @author hoang
+ * @author HoangCongMinh
  */
 public class DataValidator {
     public static void ValidateIsEmpty(JTextField txtF, StringBuilder sb, String errorMess){

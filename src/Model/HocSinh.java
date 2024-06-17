@@ -26,6 +26,12 @@ public class HocSinh implements Serializable {
         this.gioiTinh = gioiTinh;
     }
 
+    public HocSinh(String maHS, String hoTen) {
+        this.maHS = maHS;
+        this.hoTen = hoTen;
+    }
+ 
+
     public String getMaHS() {
         return maHS;
     }

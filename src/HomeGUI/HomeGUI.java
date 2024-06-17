@@ -6,11 +6,12 @@ package HomeGUI;
 
 import LoginGUI.LoginGUI;
 import QuanLyHocSinhGUI.*;
-
+import QuanLyLichThiGUI.QuanLyLichThiGUI;
+import DanhGiaHocSinhGUI.*;
 
 /**
  *
- * @author hoang
+ * @author HoangCongMinh
  */
 public class HomeGUI extends javax.swing.JFrame {
 
@@ -86,10 +87,20 @@ public class HomeGUI extends javax.swing.JFrame {
         btnLichThi.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         btnLichThi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon-celendar.png"))); // NOI18N
         btnLichThi.setText("Lịch thi");
+        btnLichThi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLichThiActionPerformed(evt);
+            }
+        });
 
         btnDanhGia.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         btnDanhGia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/2065224.png"))); // NOI18N
         btnDanhGia.setText(" Đánh giá");
+        btnDanhGia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDanhGiaActionPerformed(evt);
+            }
+        });
 
         btnThongKe.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         btnThongKe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon-thongke.png"))); // NOI18N
@@ -111,6 +122,10 @@ public class HomeGUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnLogOut)
+                .addGap(70, 70, 70))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -119,17 +134,14 @@ public class HomeGUI extends javax.swing.JFrame {
                         .addGap(140, 140, 140)
                         .addComponent(jLabel3))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(121, 121, 121)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btnHocSinh, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnDanhGia, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(129, 129, 129)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnHocSinh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnDanhGia, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE))
+                                .addGap(113, 113, 113)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(btnThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnLichThi, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -137,12 +149,11 @@ public class HomeGUI extends javax.swing.JFrame {
                                 .addGap(6, 6, 6)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(labelAdminName, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(labelAdminName, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel1)))
                 .addContainerGap(152, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnLogOut)
-                .addGap(70, 70, 70))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,6 +198,16 @@ public class HomeGUI extends javax.swing.JFrame {
         new QuanLyHocSinhGUI().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnHocSinhActionPerformed
+
+    private void btnLichThiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLichThiActionPerformed
+        new QuanLyLichThiGUI().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnLichThiActionPerformed
+
+    private void btnDanhGiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDanhGiaActionPerformed
+        new DANHGIASCREEN().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnDanhGiaActionPerformed
 
     /**
      * @param args the command line arguments
